@@ -6,6 +6,9 @@ class BookmarksController < ApplicationController
   def index
     @bookmarks = Bookmark.all
     @bookmark = Bookmark.new
+    if params[:search]
+      @search = Bookmark.find_by_fuzzy_info(params[:search], limit: 20)
+    end
   end
 
   # GET /bookmarks/1
