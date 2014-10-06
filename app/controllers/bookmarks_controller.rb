@@ -1,5 +1,3 @@
-
-
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
 
@@ -32,13 +30,12 @@ class BookmarksController < ApplicationController
       config.strict.nonet
     end
     @bookmark.name = @doc.css("head title").text
-    @bookmark.info = @doc.css("body a").text
-    @bookmark.info << @doc.css("body p").text
+    @bookmark.info = @doc.css("body div").text
     @bookmark.website = params[:bookmark][:website]
 
     respond_to do |format|
       if @bookmark.save
-        format.html { redirect_to bookmarks_url, notice: "Bookmark Added" }
+        format.html { redirect_to root_url, notice: "Bookmark Added" }
         format.json { render :show, status: :created, location: @bookmark }
       else
         format.html { render :index, notice: "Invalid Website" }
@@ -50,12 +47,19 @@ class BookmarksController < ApplicationController
   # PATCH/PUT /bookmarks/1
   # PATCH/PUT /bookmarks/1.json
   def update
+    @bookmark = Bookmark.find(params[:id])
+    @doc = Nokogiri::HTML(open(params[:bookmark][:website])) do |config|
+      config.strict.nonet
+    end
+    @bookmark.name = @doc.css("head title").text
+    @bookmark.info = @doc.css("body div").text
+    @bookmark.website = params[:bookmark][:website]
     respond_to do |format|
-      if @bookmark.update(bookmark_params)
-        format.html { redirect_to @bookmark, notice: 'Bookmark was successfully updated.' }
+      if @bookmark.save
+        format.html { redirect_to root_url, notice: 'Bookmark Updated.' }
         format.json { render :show, status: :ok, location: @bookmark }
       else
-        format.html { render :edit }
+        format.html { render :index, notice: "Invalid Website" }
         format.json { render json: @bookmark.errors, status: :unprocessable_entity }
       end
     end
