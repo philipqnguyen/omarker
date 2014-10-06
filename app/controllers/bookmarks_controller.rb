@@ -7,7 +7,8 @@ class BookmarksController < ApplicationController
     @bookmarks = Bookmark.all
     @bookmark = Bookmark.new
     if params[:search]
-      @search = Bookmark.find_by_fuzzy_info(params[:search], limit: 20)
+      # @search = Bookmark.find_by_fuzzy_info(params[:search], limit: 20)
+      @search = Bookmark.search(params[:search])
     end
   end
 
