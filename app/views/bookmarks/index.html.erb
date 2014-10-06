@@ -1,23 +1,13 @@
-<h1>Listing bookmarks</h1>
+<h1>Bookmarks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @bookmarks.each do |bookmark| %>
-      <tr>
-        <td><%= link_to bookmark.name, bookmark.website %></td>
-        <td><%= link_to 'Show', bookmark %></td>
-        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
-        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="small-6 medium-4 large-3 columns">
+        <%= link_to bookmark.name, bookmark.website %>
+        <%= link_to 'Show', bookmark %>
+        <%= link_to 'Edit', edit_bookmark_path(bookmark) %>
+        <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %><p>
+    </div>
     <% end %>
-  </tbody>
-</table>
 
 <br>
 
@@ -33,8 +23,7 @@
       </ul>
     </div>
   <% end %>
-  <%= f.label :website %>
-  <%= f.text_field :website %>
+  <%= f.text_field :website, placeholder: "Enter Website" %>
   <div class="actions">
     <%= f.submit %>
   </div>
