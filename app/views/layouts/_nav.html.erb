@@ -24,12 +24,20 @@
     <ul class="left">
       <li class="has-form">
   <div class="row collapse">
-    <div class="large-8 small-9 columns">
+<!--     <div class="large-8 small-9 columns">
       <input type="text" placeholder="Find Stuff">
     </div>
     <div class="large-4 small-3 columns">
       <a href="#" class="alert button expand">Search</a>
-    </div>
+    </div> -->
+    <%= form_tag(bookmarks_path, :method => "get", id: "search-form") do %>
+      <div class="large-8 small-9 columns">
+        <%= text_field_tag :search, params[:search], placeholder: "Search Bookmarks" %>
+      </div>
+      <div class="large-4 small-3 columns">
+        <%= submit_tag "Search", :name => nil, class: "alert button expand" %>
+      </div>
+    <% end %>
   </div>
 </li>
     </ul>
