@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'fuzzily', '~> 0.3.2'
+
 gem 'foundation-rails', github: 'philipqnguyen/foundation-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
