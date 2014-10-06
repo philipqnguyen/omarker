@@ -1,5 +1,3 @@
-
-
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
 
@@ -32,8 +30,7 @@ class BookmarksController < ApplicationController
       config.strict.nonet
     end
     @bookmark.name = @doc.css("head title").text
-    @bookmark.info = @doc.css("body a").text
-    @bookmark.info << @doc.css("body p").text
+    @bookmark.info = @doc.css("body div").text
     @bookmark.website = params[:bookmark][:website]
 
     respond_to do |format|
