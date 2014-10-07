@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20141006202810) do
 
   create_table "bookmarks", force: true do |t|
-    t.string   "info"
+    t.text     "info"
     t.string   "website"
     t.string   "name"
     t.datetime "created_at"
