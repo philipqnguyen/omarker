@@ -10,30 +10,33 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li class="active"><a href="#">User</a></li>
-      <li class="has-dropdown">
-        <a href="#">Account</a>
-        <ul class="dropdown">
-          <li><a href="#">Sign Out</a></li>
-          <li><a href="#">Settings</a></li>
-        </ul>
-      </li>
+      <% if user_signed_in? %>
+        <li class="has-dropdown">
+          <a href="#">Account</a>
+          <ul class="dropdown">
+            <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+          </ul>
+        </li>
+      <% else %>
+        <li><%= link_to 'Sign in', new_user_session_path %></li>
+      <% end %>
     </ul>
 
     <!-- Left Nav Section -->
     <ul class="left">
       <li class="has-form">
-  <div class="row collapse">
-    <%= form_tag(bookmarks_path, :method => "get", id: "search-form") do %>
-      <div class="large-8 small-9 columns">
-        <%= text_field_tag :search, params[:search], placeholder: "Search Bookmarks" %>
-      </div>
-      <div class="large-4 small-3 columns">
-        <%= submit_tag "Search", :name => nil, class: "alert button expand" %>
-      </div>
-    <% end %>
-  </div>
-</li>
+        <div class="row collapse">
+          <%= form_tag(bookmarks_path, :method => "get", id: "search-form") do %>
+            <div class="large-8 small-9 columns">
+              <%= text_field_tag :search, params[:search], placeholder: "Search Bookmarks" %>
+            </div>
+            <div class="large-4 small-3 columns">
+              <%= submit_tag "Search", :name => nil, class: "alert button expand" %>
+            </div>
+          <% end %>
+        </div>
+      </li>
     </ul>
   </section>
 </nav>
