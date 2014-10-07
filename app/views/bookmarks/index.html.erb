@@ -18,24 +18,13 @@
   </div>
 <% end %>
 
-<% if @search %>
-  <% @search.each do |result| %>
-    <div class="small-6 medium-4 large-3 columns">
-      <%= link_to result.name, result.website %>
-      <%= link_to 'Show', result %>
-      <%= link_to 'Edit', edit_bookmark_path(result) %>
-      <%= link_to 'Destroy', result, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
-  <% end %>
-<% else %>
-  <% @bookmarks.each do |bookmark| %>
-    <div class="small-6 medium-4 large-3 columns">
-      <%= link_to bookmark.name, bookmark.website %>
-      <%= link_to 'Show', bookmark %>
-      <%= link_to 'Edit', edit_bookmark_path(bookmark) %>
-      <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %><p>
-    </div>
-  <% end %>
+<% @bookmarks.each do |bookmark| %>
+  <div class="small-6 medium-4 large-3 columns">
+    <%= link_to bookmark.name, bookmark.website %>
+    <%= link_to 'Show', bookmark %>
+    <%= link_to 'Edit', edit_bookmark_path(bookmark) %>
+    <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
 <% end %>
 
 
