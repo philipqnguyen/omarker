@@ -14,7 +14,7 @@
         <li class="has-dropdown">
           <a href="#">Account</a>
           <ul class="dropdown">
-            <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, id: 'sign-out' %></li>
             <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
           </ul>
         </li>
@@ -28,11 +28,14 @@
       <li class="has-form">
         <div class="row collapse">
           <%= form_tag(bookmarks_path, :method => "get", id: "search-form") do %>
-            <div class="large-8 small-9 columns">
-              <%= text_field_tag :search, params[:search], placeholder: "Search Bookmarks" %>
+            <div id="search_area" class="large-6 small-8 columns">
+              <!-- JS fills in search-form -->
             </div>
-            <div class="large-4 small-3 columns">
+            <div class="large-3 small-2 columns">
               <%= submit_tag "Search", :name => nil, class: "alert button expand" %>
+            </div>
+            <div class="large-3 small-2 columns">
+              <%= link_to "Private", '#', class: "alert button expand", id: "private-button" %>
             </div>
           <% end %>
         </div>
