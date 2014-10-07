@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'devise', '~> 3.4.0'
 gem 'eefgilm'
 gem 'foundation-rails', github: 'philipqnguyen/foundation-rails'
 gem 'jbuilder', '~> 2.0'
@@ -22,6 +23,8 @@ end
 group :test do
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
+  gem 'poltergeist'
+  gem 'launchy'
 end
 group :production do
   gem 'rails_12factor', '0.0.2'

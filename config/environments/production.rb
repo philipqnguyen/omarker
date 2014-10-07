@@ -78,4 +78,8 @@ Rails.application.configure do
 
   # modernizer for foundation
   config.assets.precompile += %w( vendor/modernizr.js )
+
+  # Mailer for devise
+  config.action_mailer.default_url_options = {
+    host: 'omarker.herokuapp.com' }
 end
