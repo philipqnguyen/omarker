@@ -61,8 +61,6 @@ GEM
     eefgilm (1.1.2)
     erubis (2.7.0)
     execjs (2.2.1)
-    fuzzily (0.3.2)
-      activerecord (>= 2.3.17)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.2.0)
@@ -163,7 +161,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   eefgilm
   foundation-rails!
-  fuzzily (~> 0.3.2)
   jbuilder (~> 2.0)
   jquery-rails
   minitest-rails
