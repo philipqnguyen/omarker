@@ -6,6 +6,16 @@ GIT
       railties (>= 3.1.0)
       sass (>= 3.2.0)
 
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: 3ec2599d13c1c4d6ab7c5bd291b8ff31e625915e
+  specs:
+    paperclip (4.2.0)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,7 +61,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
     cliver (0.3.2)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -190,6 +204,7 @@ DEPENDENCIES
   minitest-rails
   minitest-rails-capybara
   nokogiri
+  paperclip!
   pg
   poltergeist
   rails (= 4.1.6)

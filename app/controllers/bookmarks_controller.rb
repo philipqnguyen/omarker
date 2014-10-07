@@ -36,6 +36,7 @@ class BookmarksController < ApplicationController
     @bookmark.name = @doc.css("head title").text
     @bookmark.info = @doc.css("body div").text
     @bookmark.website = params[:bookmark][:website]
+    @bookmark.user = current_user
 
     respond_to do |format|
       if @bookmark.save
