@@ -1,3 +1,40 @@
 // Place all the styles related to the Bookmarks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'foundation';
+
+.bookmark {
+  box-shadow: 1px 1px 3px #888888;
+  background-color: $smoke;
+  width: 20%;
+}
+
+body {
+  background-image: url('http://th03.deviantart.net/fs71/PRE/f/2012/288/1/e/blurry_passing_by_cynebula-d5hy93b.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.masonry item, .masonry .grid-sizer {
+  width:  20%;
+}
+
+.masonry .item, .masonry .grid-sizer {
+  height: 200px;
+  float: left;
+}
+
+.item {
+  position: relative;
+}
+
+.info{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+a {
+  color: $primary-color;
+}
