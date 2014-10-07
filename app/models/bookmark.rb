@@ -1,6 +1,8 @@
 class Bookmark < ActiveRecord::Base
   validates :website, presence: true
-  # fuzzily_searchable :info
+
+  has_many :ownerships
+  has_many :users, through: :ownerships
 
   def self.search(query)
     if query.present?

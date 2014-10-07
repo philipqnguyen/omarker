@@ -19,7 +19,7 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks/new
   def new
-    @bookmark = Bookmark.new
+    @bookmark = current_user.bookmarks.build
   end
 
   # GET /bookmarks/1/edit
@@ -29,13 +29,14 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.json
   def create
-    @bookmark = Bookmark.new
+    @bookmark = current_user.bookmarks.build
     @doc = Nokogiri::HTML(open(params[:bookmark][:website])) do |config|
       config.strict.nonet
     end
     @bookmark.name = @doc.css("head title").text
     @bookmark.info = @doc.css("body div").text
     @bookmark.website = params[:bookmark][:website]
+    current_user.bookmarks << @bookmark
 
     respond_to do |format|
       if @bookmark.save
@@ -89,4 +90,7 @@ class BookmarksController < ApplicationController
     def bookmark_params
       params[:bookmark]
     end
+  #     def project_params
+  #   params.require(:project).permit(:title, :content)
+  # end
 end
