@@ -7,8 +7,7 @@
   box-shadow: 1px 1px 3px #888888;
   background-color: $smoke;
   width: 20%;
-    background-repeat: no-repeat;
-  background-size: cover;
+
 }
 
 body {
@@ -27,23 +26,27 @@ body {
   z-index: 0;
 }
 
-.masonry item, .masonry .grid-sizer {
+.masonry .item, .masonry .grid-sizer{
   width:  20%;
 }
 
+.picture {
+  height: 220px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 .masonry .item, .masonry .grid-sizer {
-  height: 200px;
+  height: 275px;
   float: left;
 }
 
-.item {
+.picture {
   position: relative;
 }
 
 .info{
-  position: absolute;
-  bottom: 0;
-  right: 0;
+text-align: center;
 }
 
 a {

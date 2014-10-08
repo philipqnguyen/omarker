@@ -4,12 +4,12 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
   def index
-    # @bookmarks = Bookmark.all
     @bookmark = Bookmark.new
-    # if params[:search]
-      # @search = Bookmark.find_by_fuzzy_info(params[:search], limit: 20)
-    @bookmarks = Bookmark.search(params[:search])
-    # end
+    if params[:privatesearch]
+      @bookmarks = current_user.bookmarks.search(params[:privatesearch])
+    else
+      @bookmarks = Bookmark.search(params[:search])
+    end
   end
 
   # GET /bookmarks/1
@@ -19,7 +19,7 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks/new
   def new
-    @bookmark = Bookmark.new
+    @bookmark = current_user.bookmarks.build
   end
 
   # GET /bookmarks/1/edit
@@ -29,14 +29,24 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.json
   def create
-    @bookmark = Bookmark.new
-    @doc = Nokogiri::HTML(open(params[:bookmark][:website])) do |config|
-      config.strict.nonet
+    @bookmark = current_user.bookmarks.build
+    @doc = OpenGraph.fetch(params[:bookmark][:website])
+
+    if @doc
+      @bookmark.name = @doc.title
+      @bookmark.picture = @doc.image
+      @bookmark.info = @doc.description
+      @bookmark.website = @doc.url
+    else
+      @doc = Nokogiri::HTML(open(params[:bookmark][:website])) do |config|
+        config.strict.nonet
+      end
+      @bookmark.name = @doc.css("head title").text
+      # @bookmark.info = @doc.css("body div").text
+      @bookmark.picture = @doc.xpath('//img/@src').first.text
+      @bookmark.website = params[:bookmark][:website]
     end
-    @bookmark.name = @doc.css("head title").text
-    @bookmark.info = @doc.css("body div").text
-    @bookmark.website = params[:bookmark][:website]
-    @bookmark.user = current_user
+    current_user.bookmarks << @bookmark
 
     respond_to do |format|
       if @bookmark.save
@@ -90,4 +100,7 @@ class BookmarksController < ApplicationController
     def bookmark_params
       params[:bookmark]
     end
+  #     def project_params
+  #   params.require(:project).permit(:title, :content)
+  # end
 end
