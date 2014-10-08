@@ -2908,12 +2908,9 @@ var ready = function(){
       var tileCollection = [];
       for (var i = 0; i < items.length; i++) {
         console.log('HEY');
-        var tile = '<div class="item bookmark" style="position: absolute; left: 510px; top: 0px;"><a href='+items[i]['website']+'>'+items[i]['name']+'</a><div class="info"><a href="/bookmarks/'+items[i]['id']+'">Show</a><a href="/bookmarks/'+items[i]['id']+'/edit">Edit</a><a data-confirm="Are you sure?" data-method="delete" href="/bookmarks/'+items[i]['id']+'" rel="nofollow">Destroy</a></div></div>';
-        tileCollection.push(tile);
+        var tile = '<div class="large-3 columns bookmark" style="position: absolute; left: 510px; top: 0px;"><a href='+items[i]['website']+'>'+items[i]['name']+'</a><div class="info"><a href="/bookmarks/'+items[i]['id']+'">Show</a><a href="/bookmarks/'+items[i]['id']+'/edit">Edit</a><a data-confirm="Are you sure?" data-method="delete" href="/bookmarks/'+items[i]['id']+'" rel="nofollow">Destroy</a></div></div>';
+        $('#content-bookmarks').append(tile);
       }
-      console.log(tileCollection);
-      var contentBookmarks = document.getElementById('content-bookmarks');
-      contentBookmarks.innerHTML = tileCollection.join();
     });
   }
 
