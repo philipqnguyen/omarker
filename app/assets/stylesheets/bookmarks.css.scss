@@ -1,17 +1,61 @@
 // Place all the styles related to the Bookmarks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 @import 'foundation';
 
-.bookmark {
-  box-shadow: 1px 1px 3px #888888;
-  background-color: $smoke;
-  width: 20%;
+@media all and (min-width: 1001px) {
 
+  .bookmark {
+    box-shadow: 1px 1px 3px #888888;
+    background-color: $smoke;
+    width: 20%;
+  }
+
+
+  .masonry .item, .masonry .grid-sizer {
+    width:  20%;
+  }
+}
+
+@media all and (max-width: 1000px) and (min-width: 701px) {
+
+  .bookmark {
+    box-shadow: 1px 1px 3px #888888;
+    background-color: $smoke;
+    width: 25%;
+  }
+
+  .masonry .item, .masonry .grid-sizer {
+    width:  25%;
+  }
+}
+
+@media all and (max-width: 700px) {
+
+  .bookmark {
+    box-shadow: 1px 1px 3px #888888;
+    background-color: $smoke;
+    width: 50%;
+  }
+
+  .masonry .item, .masonry .grid-sizer{
+    width:  50%;
+  }
+}
+
+website_title {
+  margin-top: 4px;
+  font-size: 120%;
+  text-align: center;
+  font-family: $font-family-serif;
+}
+
+* {
+  font-family: $font-family-serif;
 }
 
 body {
-
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -26,16 +70,13 @@ body {
   z-index: 0;
 }
 
-.masonry .item, .masonry .grid-sizer{
-  width:  20%;
-}
-
 .picture {
   height: 230px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
+
 .masonry .item, .masonry .grid-sizer {
   height: 275px;
   float: left;

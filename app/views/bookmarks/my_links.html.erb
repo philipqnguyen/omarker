@@ -35,16 +35,16 @@
           </div>
           <div>
             <% if bookmark.name.length > 20 %>
-              <%= "#{bookmark.name[0..19]}..." %>
+              <p class="website_title"><%= "#{bookmark.name[0..19]}..." %></p>
             <% else %>
               <%= bookmark.name %>
             <% end %>
           </div>
           <div class="info">
-            <%= link_to 'Show', bookmark %>
+            <!-- <%= link_to 'Show', bookmark %>
             <% if user_signed_in? %>
               <%= link_to 'Edit', edit_bookmark_path(bookmark) %>
-              <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>  <%= @bookmark.picture %>
+              <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>  <%= @bookmark.picture %> -->
             <% end %>
           </div>
         </div>
@@ -52,4 +52,3 @@
     </div>
   </div>
 </div>
-
