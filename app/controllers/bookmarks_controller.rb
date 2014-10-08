@@ -5,8 +5,25 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.json
   def index
     @bookmark = Bookmark.new
-    @bookmarks = Bookmark.all
+    @bookmarks = Bookmark.search(params[:search])
   end
+
+  def my_links
+    @bookmark = Bookmark.new
+    @bookmarks = current_user.bookmarks.search(params[:search])
+  end
+
+  def api_public_index
+    @bookmarks = Bookmark.search(params[:search])
+    render json: @bookmarks
+  end
+
+  def api_private_index
+    @user = User.find(params[:user])
+    @bookmarks = @user.bookmarks.search(params[:search])
+    render json: @bookmarks
+  end
+
 
   # GET /bookmarks/1
   # GET /bookmarks/1.json
@@ -30,6 +47,9 @@ class BookmarksController < ApplicationController
     @bookmark.name = @scrape.title
     @bookmark.website = @scrape.url
     @bookmark.info = @scrape.description
+      if @scrape.meta["keywords"]
+        @bookmark.info += @scrape.description
+      end
     if @scrape.image
       @bookmark.picture = @scrape.image
     elsif @scrape.favicon
