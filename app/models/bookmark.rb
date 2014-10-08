@@ -13,7 +13,7 @@ class Bookmark < ActiveRecord::Base
         RANK
       where("info @@ :q or name @@ :q", q: query).order("#{rank} desc")
     else
-      all
+      order('bookmarks.created_at DESC').all
     end
   end
 end
