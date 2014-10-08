@@ -4,6 +4,17 @@
 
 @import 'foundation';
 
+.info {
+  text-align: right;
+  margin-right: 8px;
+  color: black;
+}
+
+.alert-box.round {
+  text-align: center;
+  border-radius: 0;
+}
+
 @media all and (min-width: 1001px) {
 
   .bookmark {
@@ -44,12 +55,16 @@
   }
 }
 
-website_title {
+p.website_title {
   margin-top: 4px;
-  font-size: 120%;
+  margin-bottom: -3px;
+  font-size: 100%;
   text-align: center;
-  font-family: $font-family-serif;
+  line-height: -10px;
+
 }
+
+
 
 * {
   font-family: $font-family-serif;
@@ -78,7 +93,7 @@ body {
 }
 
 .masonry .item, .masonry .grid-sizer {
-  height: 275px;
+  height: 280px;
   float: left;
 }
 
@@ -87,7 +102,6 @@ body {
 }
 
 .info{
-text-align: center;
 }
 
 a {
