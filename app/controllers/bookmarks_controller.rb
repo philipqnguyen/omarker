@@ -29,21 +29,24 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.json
   def create
-    @bookmark = current_user.bookmarks.build
-    @meta = OpenGraph.fetch(params[:bookmark][:website])
-    @doc =  Nokogiri::HTML(open(params[:bookmark][:website]))
-
-    if @meta
-      @bookmark.name = @meta.title
-      @bookmark.picture = @meta.image
-      @bookmark.info = @doc.css("body div").text
-      @bookmark.website = @meta.url
-    else
-      @bookmark.name = @doc.css("head title").text
-      @bookmark.info = @doc.css("body div").text
-      @bookmark.picture = @doc.xpath('//img/@src').last.text
-      @bookmark.website = params[:bookmark][:website]
-    end
+    @bookmark = Bookmark.new
+  #  @bookmark = current_user.bookmarks.build
+  #  @meta = OpenGraph.fetch(params[:bookmark][:website])
+  #  @doc =  Nokogiri::HTML(open(params[:bookmark][:website]))
+    @scrape = MetaInspector.new(params[:bookmark][:website])
+    @bookmark.name = @scrape.title
+    @bookmark.website = @scrape.url
+    # if @meta
+    #   @bookmark.name = @meta.title
+    #   @bookmark.picture = @meta.image
+    #   @bookmark.info = @doc.css("body div").text
+    #   @bookmark.website = @meta.url
+    # else
+    #   @bookmark.name = @doc.css("head title").text
+    #   @bookmark.info = @doc.css("body div").text
+    #   @bookmark.picture = @doc.xpath('//img/@src').last.text
+    #   @bookmark.website = params[:bookmark][:website]
+    # end
     current_user.bookmarks << @bookmark
 
     respond_to do |format|
