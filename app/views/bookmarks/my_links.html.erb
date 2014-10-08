@@ -1,80 +1,55 @@
-<% if current_user %>
 <div class="row">
-<div class="small-4 small-offset-4 columns">
-<%= form_for(@bookmark) do |f| %>
-  <% if @bookmark.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+  <div class="small-4 small-offset-4 columns">
+    <%= form_for(@bookmark) do |f| %>
+      <% if @bookmark.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
 
-      <ul>
-      <% @bookmark.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @bookmark.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.text_field :website, placeholder: "Enter Website", class: "small-3 columns" %>
-  <div class="actions">
+      <%= f.text_field :website, placeholder: "Enter Website", class: "small-3 columns" %>
+      <div class="actions">
 
+      </div>
+    <% end %>
   </div>
-<% end %>
 </div>
-</div>
+
+<%= hidden_field_tag :user_id, current_user.id %>
 
 <div class="drawer">
-<div class="masonry js-masonry"  data-masonry-options='{ "columnWidth": ".grid-sizer", "itemSelector": ".item" }'>
-  <div class="grid-sizer"></div>
-<% @bookmarks.each do |bookmark| %>
-  <div class="item bookmark">
-  <div class="picture"  style="background-image: <%= "url(#{bookmark.picture})" %>">
-    <%= link_to bookmark.website do %>
-      <span class="link-spanner"></span>
-    <% end %>
-  </div>
-    <% if bookmark.name.length > 20 %>
-    <%= "#{bookmark.name[0..19]}..." %>
-    <% else %>
-    <%= bookmark.name %>
-    <% end %>
-    <div class="info">
-      <%= link_to 'Show', bookmark %>
-      <%= link_to 'Edit', edit_bookmark_path(bookmark) %>
-      <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>  <%= @bookmark.picture %>
+  <div class="masonry js-masonry"  data-masonry-options='{ "columnWidth": ".grid-sizer", "itemSelector": ".item" }'>
+    <div class="grid-sizer"></div>
+    <div id="content-bookmarks">
+      <% @bookmarks.each do |bookmark| %>
+        <div class="item bookmark">
+          <div class="picture"  style="background-image: <%= "url(#{bookmark.picture})" %>">
+            <%= link_to bookmark.website do %>
+              <span class="link-spanner"></span>
+            <% end %>
+          </div>
+          <div>
+            <% if bookmark.name.length > 20 %>
+              <%= "#{bookmark.name[0..19]}..." %>
+            <% else %>
+              <%= bookmark.name %>
+            <% end %>
+          </div>
+          <div class="info">
+            <%= link_to 'Show', bookmark %>
+            <% if user_signed_in? %>
+              <%= link_to 'Edit', edit_bookmark_path(bookmark) %>
+              <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>  <%= @bookmark.picture %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-
-<% end %>
-</div>
 </div>
 
-
-
-
-<% else %>
-<div class="intro">
-<h3>Link.ly</h3>
-<h4>Take a look at what's trending:</h4>
-</div>
-<div class="drawer">
-<div class="masonry js-masonry"  data-masonry-options='{ "columnWidth": ".grid-sizer", "itemSelector": ".item" }'>
-  <div class="grid-sizer"></div>
-<% @bookmarks.each do |bookmark| %>
-  <div class="item bookmark" style="background-image: <%= "url(bookmark.avatar.url)" %>">
-    <%= link_to bookmark.website do %>
-      <span class="link-spanner"></span>
-    <% end %>
-    <% if bookmark.name.length > 20 %>
-    <%= "#{bookmark.name[0..19]}..." %>
-    <% else %>
-    <%= bookmark.name %>
-    <% end %>
-    <div class="info">
-      <%= link_to 'Show', bookmark %>
-      <%= link_to 'Edit', edit_bookmark_path(bookmark) %>
-      <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
-  </div>
-<% end %>
-</div>
-</div>
-<% end %>
