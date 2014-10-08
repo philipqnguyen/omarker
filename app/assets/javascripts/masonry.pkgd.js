@@ -2865,6 +2865,8 @@ function masonryDefinition( Outlayer, getSize ) {
   return Masonry;
 }
 
+
+
 // -------------------------- transport -------------------------- //
 
 if ( typeof define === 'function' && define.amd ) {
@@ -2884,3 +2886,41 @@ if ( typeof define === 'function' && define.amd ) {
 
 })( window );
 
+
+//========== CUSTOM SEARCH ON KEYUP ==========//
+
+
+var ready = function(){
+  var searchForm = document.getElementById('search');
+  function populateContent() {
+    $('#content-bookmarks').empty();
+    $.getJSON('api_public_index.json/?search=' + searchForm.value, function(bookmarks) {
+      var items = [];
+      $.each( bookmarks, function(key, value) {
+        var hash = {};
+        hash['id'] = value['id'];
+        hash['name'] = value['name'];
+        hash['website'] = value['website'];
+        items.push(hash);
+      });
+      console.log(items);
+      console.log(items.length);
+      var tileCollection = [];
+      for (var i = 0; i < items.length; i++) {
+        console.log('HEY');
+        var tile = '<div class="item bookmark" style="position: absolute; left: 510px; top: 0px;"><a href='+items[i]['website']+'>'+items[i]['name']+'</a><div class="info"><a href="/bookmarks/'+items[i]['id']+'">Show</a><a href="/bookmarks/'+items[i]['id']+'/edit">Edit</a><a data-confirm="Are you sure?" data-method="delete" href="/bookmarks/'+items[i]['id']+'" rel="nofollow">Destroy</a></div></div>';
+        tileCollection.push(tile);
+      }
+      console.log(tileCollection);
+      var contentBookmarks = document.getElementById('content-bookmarks');
+      contentBookmarks.innerHTML = tileCollection.join();
+    });
+  }
+
+  $('#content-bookmarks').masonry();
+  searchForm.addEventListener('keyup', populateContent, false);
+}
+
+$(document).ready(ready); // event fires on first load
+
+$(document).on('page:load', ready); // event fires on subsequent loads

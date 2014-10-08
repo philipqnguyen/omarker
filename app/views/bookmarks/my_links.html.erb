@@ -23,6 +23,7 @@
 <div class="drawer">
 <div class="masonry js-masonry"  data-masonry-options='{ "columnWidth": ".grid-sizer", "itemSelector": ".item" }'>
   <div class="grid-sizer"></div>
+  <div id="content-bookmarks">
 <% @bookmarks.each do |bookmark| %>
   <div class="item bookmark">
     <% if bookmark.name.length > 20 %>
@@ -37,5 +38,6 @@
     </div>
   </div>
 <% end %>
+</div>
 </div>
 </div>
