@@ -42,34 +42,28 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.json
   def create
-    @bookmark = current_user.bookmarks.build
-    @doc = OpenGraph.fetch(params[:bookmark][:website])
-
-    if @doc
-      @bookmark.name = @doc.title
-      @bookmark.picture = @doc.image
-      @bookmark.info = @doc.description
-      @bookmark.website = @doc.url
-    else
-      @doc = Nokogiri::HTML(open(params[:bookmark][:website])) do |config|
-        config.strict.nonet
+    @bookmark = Bookmark.new
+    @scrape = MetaInspector.new(params[:bookmark][:website])
+    @bookmark.name = @scrape.title
+    @bookmark.website = @scrape.url
+    @bookmark.info = @scrape.description
+      if @scrape.meta["keywords"]
+        @bookmark.info += @scrape.description
       end
-      @bookmark.name = @doc.css("head title").text
-      # @bookmark.info = @doc.css("body div").text
-      @bookmark.picture = @doc.xpath('//img/@src').first.text
-      @bookmark.website = params[:bookmark][:website]
+    if @scrape.image
+      @bookmark.picture = @scrape.image
+    elsif @scrape.favicon
+      @bookmark.picture = @scrape.favicon
+    elsif @scrape.images[1]
+      @bookmark.picture = @scrape.images[1]
     end
     current_user.bookmarks << @bookmark
 
-    respond_to do |format|
-      if @bookmark.save
-        format.html { redirect_to root_url, notice: "Bookmark Added" }
-        format.json { render :show, status: :created, location: @bookmark }
+     if @bookmark.save
+        redirect_to root_url, notice: "Bookmark Added"
       else
-        format.html { render :index, notice: "Invalid Website" }
-        format.json { render json: @bookmark.errors, status: :unprocessable_entity }
+        render :index, notice: "Invalid Website"
       end
-    end
   end
 
   # PATCH/PUT /bookmarks/1
