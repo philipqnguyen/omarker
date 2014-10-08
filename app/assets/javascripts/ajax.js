@@ -26,7 +26,7 @@ var ready = function(){
       var tileCollection = [];
       for (var i = 0; i < items.length; i++) {
         console.log('HEY');
-        var tile = '<div class="item bookmark"><div class="picture" style="background-image: url('+items[i]['picture']+')"><a href='+items[i]['website']+'><span class="link-spanner"></span></a></div><div>'+items[i]['name']+'</div><div class="info"><a href="/bookmarks/'+items[i]['id']+'">Show</a><a href="/bookmarks/'+items[i]['id']+'/edit">Edit</a><a data-confirm="Are you sure?" data-method="delete" href="/bookmarks/'+items[i]['id']+'" rel="nofollow">Destroy</a></div></div>';
+        var tile = '<div class="item bookmark"><div class="picture" style="background-image: url('+items[i]['picture']+')"><a href='+items[i]['website']+' target="_blank"><span class="link-spanner"></span></a></div><div>'+items[i]['name']+'</div><div class="info"><a href="/bookmarks/'+items[i]['id']+'">Show</a><a href="/bookmarks/'+items[i]['id']+'/edit">Edit</a><a data-confirm="Are you sure?" data-method="delete" href="/bookmarks/'+items[i]['id']+'" rel="nofollow">Destroy</a></div></div>';
         // $('#content-bookmarks').append(tile);
         tileCollection.push(tile);
       }

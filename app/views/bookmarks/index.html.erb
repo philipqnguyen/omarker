@@ -26,7 +26,7 @@
       <% @bookmarks.each do |bookmark| %>
         <div class="item bookmark">
           <div class="picture"  style="background-image: <%= "url(#{bookmark.picture})" %>">
-            <%= link_to bookmark.website do %>
+            <%= link_to bookmark.website, target: '_blank' do %>
               <span class="link-spanner"></span>
             <% end %>
           </div>
