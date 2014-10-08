@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'opengraph'
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.

@@ -30,12 +30,22 @@ class BookmarksController < ApplicationController
   # POST /bookmarks.json
   def create
     @bookmark = current_user.bookmarks.build
-    @doc = Nokogiri::HTML(open(params[:bookmark][:website])) do |config|
-      config.strict.nonet
+    @doc = OpenGraph.fetch(params[:bookmark][:website])
+
+    if @doc
+      @bookmark.name = @doc.title
+      @bookmark.picture = @doc.image
+      @bookmark.info = @doc.description
+      @bookmark.website = @doc.url
+    else
+      @doc = Nokogiri::HTML(open(params[:bookmark][:website])) do |config|
+        config.strict.nonet
+      end
+      @bookmark.name = @doc.css("head title").text
+      # @bookmark.info = @doc.css("body div").text
+      @bookmark.picture = @doc.xpath('//img/@src').first.text
+      @bookmark.website = params[:bookmark][:website]
     end
-    @bookmark.name = @doc.css("head title").text
-    @bookmark.info = @doc.css("body div").text
-    @bookmark.website = params[:bookmark][:website]
     current_user.bookmarks << @bookmark
 
     respond_to do |format|

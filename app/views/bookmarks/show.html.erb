@@ -2,6 +2,7 @@
 
 <h3><%= @bookmark.name %></h3>
 <h4><%= @bookmark.website %></h4>
+<h4><%= image_tag(@bookmark.picture) %></h4>
 <%= @bookmark.info %><p>
 <%= link_to 'Edit', edit_bookmark_path(@bookmark) %> |
 <%= link_to 'Back', bookmarks_path %>

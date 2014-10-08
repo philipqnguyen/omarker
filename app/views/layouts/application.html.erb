@@ -8,7 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= csrf_meta_tags %>
     </head>
+<% if current_user %>
+  <body style="background-image: url();">
+<% else %>
   <body>
+<% end %>
     <%= render 'layouts/nav' %>
     <% flash.each do |key, value| %>
       <div class="alert-box round <%= flash_class(key) %>">

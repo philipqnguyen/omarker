@@ -7,32 +7,46 @@
   box-shadow: 1px 1px 3px #888888;
   background-color: $smoke;
   width: 20%;
+
 }
 
 body {
-  background-image: url('http://th03.deviantart.net/fs71/PRE/f/2012/288/1/e/blurry_passing_by_cynebula-d5hy93b.png');
+
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
 
-.masonry item, .masonry .grid-sizer {
+.link-spanner{
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  z-index: 0;
+}
+
+.masonry .item, .masonry .grid-sizer{
   width:  20%;
 }
 
+.picture {
+  height: 220px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 .masonry .item, .masonry .grid-sizer {
-  height: 200px;
+  height: 275px;
   float: left;
 }
 
-.item {
+.picture {
   position: relative;
 }
 
 .info{
-  position: absolute;
-  bottom: 0;
-  right: 0;
+text-align: center;
 }
 
 a {

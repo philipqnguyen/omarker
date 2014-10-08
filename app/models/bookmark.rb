@@ -1,4 +1,5 @@
 class Bookmark < ActiveRecord::Base
+
   validates :website, presence: true
 
   has_many :ownerships
