@@ -21,19 +21,31 @@
 </div>
 
 
-<div id="content-bookmarks" class="row">
-  <% @bookmarks.each do |bookmark| %>
-    <div class="small-3 columns bookmark">
-      <% if bookmark.name.length > 20 %>
-      <%= link_to "#{bookmark.name[0..19]}...", bookmark.website %>
-      <% else %>
-      <%= link_to bookmark.name, bookmark.website %>
-      <% end %>
-      <div class="info">
-        <%= link_to 'Show', bookmark %>
-        <%= link_to 'Edit', edit_bookmark_path(bookmark) %>
-        <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </div>
+<div class="intro">
+<h3>Link.ly</h3>
+<h4>Take a look at what's trending:</h4>
+</div>
+<div class="drawer">
+<div class="masonry js-masonry"  data-masonry-options='{ "columnWidth": ".grid-sizer", "itemSelector": ".item" }'>
+  <div class="grid-sizer"></div>
+<div id="content-bookmarks">
+<% @bookmarks.each do |bookmark| %>
+  <div class="item bookmark" style="background-image: <%= "url(bookmark.avatar.url)" %>">
+    <%= link_to bookmark.website do %>
+      <span class="link-spanner"></span>
+    <% end %>
+    <% if bookmark.name.length > 20 %>
+    <%= "#{bookmark.name[0..19]}..." %>
+    <% else %>
+    <%= bookmark.name %>
+    <% end %>
+    <div class="info">
+      <%= link_to 'Show', bookmark %>
+      <%= link_to 'Edit', edit_bookmark_path(bookmark) %>
+      <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
-  <% end %>
+  </div>
+<% end %>
+</div>
+</div>
 </div>
