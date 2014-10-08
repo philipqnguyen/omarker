@@ -5,11 +5,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.json
   def index
     @bookmark = Bookmark.new
-    if params[:privatesearch]
-      @bookmarks = current_user.bookmarks.search(params[:privatesearch])
-    else
-      @bookmarks = Bookmark.search(params[:search])
-    end
+    @bookmarks = Bookmark.all
   end
 
   # GET /bookmarks/1
@@ -30,34 +26,24 @@ class BookmarksController < ApplicationController
   # POST /bookmarks.json
   def create
     @bookmark = Bookmark.new
-  #  @bookmark = current_user.bookmarks.build
-  #  @meta = OpenGraph.fetch(params[:bookmark][:website])
-  #  @doc =  Nokogiri::HTML(open(params[:bookmark][:website]))
     @scrape = MetaInspector.new(params[:bookmark][:website])
     @bookmark.name = @scrape.title
     @bookmark.website = @scrape.url
-    # if @meta
-    #   @bookmark.name = @meta.title
-    #   @bookmark.picture = @meta.image
-    #   @bookmark.info = @doc.css("body div").text
-    #   @bookmark.website = @meta.url
-    # else
-    #   @bookmark.name = @doc.css("head title").text
-    #   @bookmark.info = @doc.css("body div").text
-    #   @bookmark.picture = @doc.xpath('//img/@src').last.text
-    #   @bookmark.website = params[:bookmark][:website]
-    # end
+    @bookmark.info = @scrape.description
+    if @scrape.image
+      @bookmark.picture = @scrape.image
+    elsif @scrape.favicon
+      @bookmark.picture = @scrape.favicon
+    elsif @scrape.images[1]
+      @bookmark.picture = @scrape.images[1]
+    end
     current_user.bookmarks << @bookmark
 
-    respond_to do |format|
-      if @bookmark.save
-        format.html { redirect_to root_url, notice: "Bookmark Added" }
-        format.json { render :show, status: :created, location: @bookmark }
+     if @bookmark.save
+        redirect_to root_url, notice: "Bookmark Added"
       else
-        format.html { render :index, notice: "Invalid Website" }
-        format.json { render json: @bookmark.errors, status: :unprocessable_entity }
+        render :index, notice: "Invalid Website"
       end
-    end
   end
 
   # PATCH/PUT /bookmarks/1

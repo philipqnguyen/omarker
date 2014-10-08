@@ -15,7 +15,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'metainspector'
-gem 'opengraph'
 
 
 group :development do
@@ -28,6 +27,7 @@ group :test do
   gem 'poltergeist'
   gem 'launchy'
 end
+
 group :production do
   gem 'rails_12factor', '0.0.2'
 end
