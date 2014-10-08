@@ -18,6 +18,21 @@
       </div>
     <% end %>
   </div>
+<<<<<<< HEAD
+=======
+    <div class="info">
+    <% if bookmark.name.length > 20 %>
+    <%= "#{bookmark.name[0..19]}..." %>
+    <% else %>
+    <%= bookmark.name %>
+    <% end %>
+      <%= link_to 'Edit', edit_bookmark_path(bookmark) %>
+      <%= link_to 'Delete', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>  <%= @bookmark.picture %>
+    </div>
+  </div>
+
+<% end %>
+>>>>>>> 52b6a52077c80eef47b819ea7a084e44845d83e8
 </div>
 
 <div class="drawer">
