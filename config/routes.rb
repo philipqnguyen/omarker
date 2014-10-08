@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   root 'bookmarks#index'
   get 'my_links' => 'bookmarks#my_links'
+  get 'api_public_index' => 'bookmarks#api_public_index'
+  get 'api_private_index' => 'bookmarks#api_private_index'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

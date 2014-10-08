@@ -42,7 +42,7 @@
               </div>
             <% end %>
           <% else %>
-            <%= form_tag(root_path, :method => "get", id: "search-form") do %>
+            <%= form_tag(bookmarks_path, :method => "get", id: "search-form") do %>
               <div id="search_area" class="large-6 small-8 columns">
                 <input id="search" name="search" placeholder="Search Bookmarks" type="text">
               </div>

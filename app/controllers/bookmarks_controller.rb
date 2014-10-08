@@ -13,6 +13,18 @@ class BookmarksController < ApplicationController
     @bookmarks = current_user.bookmarks.search(params[:search])
   end
 
+  def api_public_index
+    @bookmarks = Bookmark.search(params[:search])
+    render json: @bookmarks
+  end
+
+  def api_private_index
+    @user = User.find(params[:user])
+    @bookmarks = @user.bookmarks.search(params[:search])
+    render json: @bookmarks
+  end
+
+
   # GET /bookmarks/1
   # GET /bookmarks/1.json
   def show
