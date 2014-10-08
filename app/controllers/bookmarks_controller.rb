@@ -5,11 +5,12 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.json
   def index
     @bookmark = Bookmark.new
-    if params[:privatesearch]
-      @bookmarks = current_user.bookmarks.search(params[:privatesearch])
-    else
-      @bookmarks = Bookmark.search(params[:search])
-    end
+    @bookmarks = Bookmark.search(params[:search])
+  end
+
+  def my_links
+    @bookmark = Bookmark.new
+    @bookmarks = current_user.bookmarks.search(params[:search])
   end
 
   # GET /bookmarks/1
