@@ -30,20 +30,18 @@ class BookmarksController < ApplicationController
   # POST /bookmarks.json
   def create
     @bookmark = current_user.bookmarks.build
-    @doc = OpenGraph.fetch(params[:bookmark][:website])
+    @meta = OpenGraph.fetch(params[:bookmark][:website])
+    @doc =  Nokogiri::HTML(open(params[:bookmark][:website]))
 
-    if @doc
-      @bookmark.name = @doc.title
-      @bookmark.picture = @doc.image
-      @bookmark.info = @doc.description
-      @bookmark.website = @doc.url
+    if @meta
+      @bookmark.name = @meta.title
+      @bookmark.picture = @meta.image
+      @bookmark.info = @doc.css("body div").text
+      @bookmark.website = @meta.url
     else
-      @doc = Nokogiri::HTML(open(params[:bookmark][:website])) do |config|
-        config.strict.nonet
-      end
       @bookmark.name = @doc.css("head title").text
-      # @bookmark.info = @doc.css("body div").text
-      @bookmark.picture = @doc.xpath('//img/@src').first.text
+      @bookmark.info = @doc.css("body div").text
+      @bookmark.picture = @doc.xpath('//img/@src').last.text
       @bookmark.website = params[:bookmark][:website]
     end
     current_user.bookmarks << @bookmark
