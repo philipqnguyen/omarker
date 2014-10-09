@@ -4,6 +4,19 @@
 
 @import 'foundation';
 
+h2 {
+text-align: center;
+font-family: $font-family-serif;
+color: white;
+}
+
+.section {
+  padding-top: 40px;
+}
+
+a {
+  font-family: $font-family-serif;
+}
 .info {
   text-align: right;
   margin-right: 8px;
@@ -15,7 +28,14 @@
   border-radius: 0;
 }
 
-@media all and (min-width: 1001px) {
+.bookmark {
+    transition: background-color .3s;
+}
+.bookmark:hover {
+  background-color: #ccccff;
+}
+
+@media all and (min-width: 1101px) {
 
   .bookmark {
     box-shadow: 1px 1px 3px #888888;
@@ -29,7 +49,7 @@
   }
 }
 
-@media all and (max-width: 1000px) and (min-width: 701px) {
+@media all and (max-width: 1100px) and (min-width: 851px) {
 
   .bookmark {
     box-shadow: 1px 1px 3px #888888;
@@ -40,6 +60,42 @@
   .masonry .item, .masonry .grid-sizer {
     width:  25%;
   }
+}
+
+@media all and (max-width: 850px) and (min-width: 701px) {
+
+  .bookmark {
+    box-shadow: 1px 1px 3px #888888;
+    background-color: $smoke;
+    width: 33.3%;
+  }
+
+  .masonry .item, .masonry .grid-sizer {
+    width:  33.3%;
+  }
+}
+
+@media all and (min-width: 701px) {
+  .picture {
+  height: 230px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.masonry .item, .masonry .grid-sizer {
+  height: 280px;
+  float: left;
+}
+
+p.website_title {
+  margin-top: 4px;
+  margin-bottom: -3px;
+  font-size: 100%;
+  text-align: center;
+  line-height: -10px;
+}
+
 }
 
 @media all and (max-width: 700px) {
@@ -53,16 +109,30 @@
   .masonry .item, .masonry .grid-sizer{
     width:  50%;
   }
+
+  .picture {
+  height: 120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.masonry .item, .masonry .grid-sizer {
+  height: 150px;
+  float: left;
 }
 
 p.website_title {
-  margin-top: 4px;
-  margin-bottom: -3px;
+  margin-top: 2px;
+  margin-bottom: -25px;
   font-size: 100%;
   text-align: center;
-  line-height: -10px;
+  line-height: -40px;
+}
 
 }
+
+
 
 
 
@@ -86,22 +156,7 @@ body {
 }
 
 .picture {
-  height: 230px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.masonry .item, .masonry .grid-sizer {
-  height: 280px;
-  float: left;
-}
-
-.picture {
   position: relative;
-}
-
-.info{
 }
 
 a {

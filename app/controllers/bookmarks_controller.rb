@@ -1,5 +1,6 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   # GET /bookmarks
   # GET /bookmarks.json
@@ -43,27 +44,15 @@ class BookmarksController < ApplicationController
   # POST /bookmarks.json
   def create
     @bookmark = Bookmark.new
-    @scrape = MetaInspector.new(params[:bookmark][:website])
-    @bookmark.name = @scrape.title
-    @bookmark.website = @scrape.url
-    @bookmark.info = @scrape.description
-      if @scrape.meta["keywords"]
-        @bookmark.info += @scrape.description
-      end
-    if @scrape.image
-      @bookmark.picture = @scrape.image
-    elsif @scrape.favicon
-      @bookmark.picture = @scrape.favicon
-    elsif @scrape.images[1]
-      @bookmark.picture = @scrape.images[1]
-    end
-    current_user.bookmarks << @bookmark
+    @url = params[:bookmark][:website]
 
-     if @bookmark.save
-        redirect_to root_url, notice: "Bookmark Added"
-      else
-        render :index, notice: "Invalid Website"
-      end
+    @bookmark.add_info(@url, current_user)
+
+    if @bookmark.save
+      redirect_to root_url, notice: "Bookmark Added"
+    else
+      redirect_to root_url, alert: "Invalid Website"
+    end
   end
 
   # PATCH/PUT /bookmarks/1
@@ -91,10 +80,7 @@ class BookmarksController < ApplicationController
   # DELETE /bookmarks/1.json
   def destroy
     @bookmark.destroy
-    respond_to do |format|
-      format.html { redirect_to bookmarks_url, notice: 'Bookmark was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to bookmarks_url, notice: 'Bookmark Removed.'
   end
 
   private

@@ -16,7 +16,7 @@ var ready = function(){
       $.each( bookmarks, function(key, value) {
         var hash = {};
         hash['id'] = value['id'];
-        hash['name'] = value['name'].substring(0,20) + '...';
+        hash['name'] = value['name'].substring(0,25) + '...';
         hash['website'] = value['website'];
         hash['picture'] = value['picture'];
         items.push(hash);
@@ -26,7 +26,14 @@ var ready = function(){
       var tileCollection = [];
       for (var i = 0; i < items.length; i++) {
         console.log('HEY');
-        var tile = '<div class="item bookmark"><div class="picture" style="background-image: url('+items[i]['picture']+')"><a href='+items[i]['website']+' target="_blank"><span class="link-spanner"></span></a></div><div>'+items[i]['name']+'</div><div class="info"><a href="/bookmarks/'+items[i]['id']+'">Show</a><a href="/bookmarks/'+items[i]['id']+'/edit">Edit</a><a data-confirm="Are you sure?" data-method="delete" href="/bookmarks/'+items[i]['id']+'" rel="nofollow">Destroy</a></div></div>';
+
+        if (!!document.getElementById('user_id')) {
+          var bookmark_delete = '<div class="info"><a data-confirm="Are you sure?" data-method="delete" href="/bookmarks/'+items[i]['id']+'" rel="nofollow">x</a></div>'
+        }
+        else {
+         var bookmark_delete = ''
+        }
+        var tile = '<div class="item bookmark"><div class="picture" style="background-image: url('+items[i]['picture']+')"><a href='+items[i]['website']+' target="_blank"><span class="link-spanner"></span></a></div><div><p class="website_title">'+items[i]['name']+'</p></div>'+bookmark_delete+'</div>';
         // $('#content-bookmarks').append(tile);
         tileCollection.push(tile);
       }

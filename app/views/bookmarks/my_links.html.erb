@@ -34,10 +34,10 @@
             <% end %>
           </div>
           <div>
-            <% if bookmark.name.length > 15 %>
-              <p class="website_title"><%= "#{bookmark.name[0..14]}..." %></p>
+            <% if bookmark.name.length > 25 %>
+              <p class="website_title"><%= "#{bookmark.name[0..24]}..." %></p>
             <% else %>
-              <%= bookmark.name %>
+              <p class="website_title"><%= bookmark.name %></p>
             <% end %>
           </div>
           <div class="info">
