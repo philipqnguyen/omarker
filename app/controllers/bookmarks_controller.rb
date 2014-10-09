@@ -6,22 +6,30 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.json
   def index
     @bookmark = Bookmark.new
-    @bookmarks = Bookmark.search(params[:search])
+    @bookmarks = Bookmark.search(params[:search]).page(params[:page]).per_page(20)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js
+    end
   end
 
   def my_links
     @bookmark = Bookmark.new
-    @bookmarks = current_user.bookmarks.search(params[:search])
+    @bookmarks = current_user.bookmarks.search(params[:search]).page(params[:page]).per_page(20)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js
+    end
   end
 
   def api_public_index
-    @bookmarks = Bookmark.search(params[:search])
+    @bookmarks = Bookmark.search(params[:search]).first(20)
     render json: @bookmarks
   end
 
   def api_private_index
     @user = User.find(params[:user])
-    @bookmarks = @user.bookmarks.search(params[:search])
+    @bookmarks = @user.bookmarks.search(params[:search]).first(20)
     render json: @bookmarks
   end
 

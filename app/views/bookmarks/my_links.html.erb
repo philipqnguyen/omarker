@@ -26,28 +26,11 @@
   <div class="masonry js-masonry"  data-masonry-options='{ "columnWidth": ".grid-sizer", "itemSelector": ".item" }'>
     <div class="grid-sizer"></div>
     <div id="content-bookmarks">
-      <% @bookmarks.each do |bookmark| %>
-        <div class="item bookmark">
-          <div class="picture"  style="background-image: <%= "url(#{bookmark.picture})" %>">
-            <%= link_to bookmark.website do %>
-              <span class="link-spanner"></span>
-            <% end %>
-          </div>
-          <div>
-            <% if bookmark.name.length > 25 %>
-              <p class="website_title"><%= "#{bookmark.name[0..24]}..." %></p>
-            <% else %>
-              <p class="website_title"><%= bookmark.name %></p>
-            <% end %>
-          </div>
-          <div class="info">
-            <!-- <%= link_to 'Show', bookmark %> -->
-            <% if user_signed_in? %>
-              <%= link_to 'x', bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete" %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+
+      <%= render @bookmarks %>
+
     </div>
   </div>
 </div>
+
+<%= will_paginate @bookmarks %>
