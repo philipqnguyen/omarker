@@ -7,12 +7,9 @@
 #   it "should allow users to add a bookmark" do
 #     sign_in
 
-#     find('#add_website').fill_in(with: 'http://en.wikipedia.org/wiki/Gerbil')
-#     find('#add_website').native.send_keys(:return)
-
-
-
-#     page.text.must_include "the free encyclopedia"
+#     page.execute_script("document.getElementById('bookmark_website').value='http://en.wikipedia.org/wiki/Gerbil'")
+#     page.execute_script("document.forms[1].submit()")
+#     page.text.must_include "Gerbil - Wikipedia"
 #   end
 #   after do
 #     Capybara.use_default_driver
