@@ -19,7 +19,6 @@
     <% end %>
   </div>
 </div>
-<% end %>
 
 <div class="drawer">
   <div class="masonry js-masonry"  data-masonry-options='{ "columnWidth": ".grid-sizer", "itemSelector": ".item" }'>
@@ -32,4 +31,32 @@
   </div>
 </div>
 
+<% end %>
+
+
+<div class="row section">
+<div class="medium-8 medium-offset-2 columns panel radius intro">
+<div class="medium-10 medium-offset-1 columns">
+<h1>Link.ly</h1>
+</div>
+<div class="medium-10 medium-centered columns">
+<p>A simple web app that saved all your favorite web sites for easy access</p>
+<p>Simply enter a url to load a bookmark to your dash</p>
+<p>Web Browser Agnostic: Allows you to save your bookmarks and use them on any browser</p>
+<p>Mobile Friendly: Bring your bookmarks on the go! Bookmarks are touch-friendly when viewed on a mobile device</p>
+</div>
+<div class="small-6 columns">
+  <%= link_to "Sign Up Now", new_user_registration_path, class: "button radius" %>
+</div>
+<div class="small-6 columns">
+  <%= link_to 'Sign in', new_user_session_path, class: "button radius" %>
+</div>
+</div>
+</div>
+</div>
+
+<h2>Public Bookmarks</h2>
+<div class="public">
+<%= render @bookmarks %>
+</div>
 <%= will_paginate @bookmarks %>
