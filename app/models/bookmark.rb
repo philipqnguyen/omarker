@@ -25,4 +25,33 @@ class Bookmark < ActiveRecord::Base
       order('bookmarks.created_at DESC').all
     end
   end
+
+  def add_info(url, user)
+        begin
+    @scrape = MetaInspector.new(url)
+    rescue Faraday::ConnectionFailed, Addressable::URI::InvalidURIError
+      @scrape = nil
+    end
+
+    unless @scrape.nil?
+      self.name = @scrape.title
+      self.website = @scrape.url
+      self.info = @scrape.description
+      @scrape.links do |l|
+        self.info += l
+      end
+
+      if @scrape.meta["keywords"]
+        self.info += @scrape.description
+      end
+      if @scrape.image
+        self.picture = @scrape.image
+      elsif @scrape.images.any?
+        self.picture = @scrape.images[Random.new.rand(@scrape.images.length)]
+      elsif @scrape.favicon
+        self.picture = @scrape.favicon
+      end
+      user.bookmarks << self
+    end
+  end
 end

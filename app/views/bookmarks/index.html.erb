@@ -32,16 +32,13 @@
               <span class="link-spanner"></span>
             <% end %>
           </div>
-          <% if bookmark.name.length > 20 %>
-            <p class="website_title"><%= "#{bookmark.name[0..14]}..." %></p>
+          <% if bookmark.name.length > 25 %>
+            <p class="website_title"><%= "#{bookmark.name[0..24]}..." %></p>
           <% else %>
-            <%= bookmark.name %>
+            <p class="website_title"><%= bookmark.name %></p>
           <% end %>
           <div class="info">
             <!-- <%= link_to 'Show', bookmark %> -->
-            <% if user_signed_in? %>
-              <%= link_to 'x', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>  <%= @bookmark.picture %>
-            <% end %>
           </div>
         </div>
       <% end %>
