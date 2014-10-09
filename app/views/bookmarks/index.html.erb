@@ -56,7 +56,14 @@
 </div>
 
 <h2>Public Bookmarks</h2>
-<div class="public">
-<%= render @bookmarks %>
+<div class="drawer">
+  <div class="masonry js-masonry"  data-masonry-options='{ "columnWidth": ".grid-sizer", "itemSelector": ".item" }'>
+    <div class="grid-sizer"></div>
+    <div id="content-bookmarks">
+
+      <%= render @bookmarks %>
+
+    </div>
+  </div>
 </div>
 <%= will_paginate @bookmarks %>
