@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require masonry.pkgd.js
+//= require masonry/jquery.imagesloaded.min
+//= require masonry/jquery.infinitescroll.min
 //= require foundation
 //= require turbolinks
 //= require_tree .

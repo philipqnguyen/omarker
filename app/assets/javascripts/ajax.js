@@ -10,6 +10,9 @@ var ready = function(){
     var apiAction = 'api_public_index.json/';
   }
   function populateContent() {
+    if (searchPublicForm.value === ""){
+      location.reload();
+    }
     $('#content-bookmarks').empty();
     $.getJSON(apiAction+userId+'&search=' + searchPublicForm.value, function(bookmarks) {
       var items = [];

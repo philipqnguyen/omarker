@@ -1,0 +1,19 @@
+<div class="item bookmark">
+  <div class="picture"  style="background-image: <%= "url(#{bookmark.picture})" %>">
+    <%= link_to bookmark.website do %>
+      <span class="link-spanner"></span>
+    <% end %>
+  </div>
+  <div>
+    <% if bookmark.name.length > 25 %>
+      <p class="website_title"><%= "#{bookmark.name[0..24]}..." %></p>
+    <% else %>
+      <p class="website_title"><%= bookmark.name %></p>
+    <% end %>
+  </div>
+  <div class="info">
+    <% if user_signed_in? && request.path == my_links_path %>
+      <%= link_to 'x', bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete" %>
+    <% end %>
+  </div>
+</div>
