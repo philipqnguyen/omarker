@@ -33,5 +33,8 @@ describe 'Authentication page' do
     click_on 'Sign out'
 
     page.text.must_include 'Signed out successfully'
+    current_path.must_equal '/'
+    page.text.wont_include 'Private'
+    page.text.wont_include 'Public'
   end
 end

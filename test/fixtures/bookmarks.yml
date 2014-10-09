@@ -4,3 +4,21 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+wikipedia:
+  id: 1
+  name: Wikipedia
+  website: http://wikipedia.org
+  info: The free encyclopedia
+
+dog:
+  id: 2
+  name: dog
+  website: http://en.wikipedia.org/wiki/Dog
+  info: Dog dog
+
+google:
+  id: 3
+  name: Google
+  website: http://google.com
+  info: google
