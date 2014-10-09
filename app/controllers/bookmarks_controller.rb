@@ -88,7 +88,7 @@ class BookmarksController < ApplicationController
   # DELETE /bookmarks/1.json
   def destroy
     @bookmark.destroy
-    redirect_to bookmarks_url, notice: 'Bookmark Removed.'
+    redirect_to root_url, notice: 'Bookmark Removed.'
   end
 
   private

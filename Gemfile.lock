@@ -100,7 +100,7 @@ GEM
       mime-types (>= 1.16, < 3)
     masonry-rails (0.2.1)
       rails
-    metainspector (3.0.0)
+    metainspector (3.1.0)
       addressable (~> 2.3.5)
       faraday
       faraday-cookie_jar

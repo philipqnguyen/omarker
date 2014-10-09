@@ -4,10 +4,31 @@
 
 @import 'foundation';
 
-h2 {
+h1, h2 {
 text-align: center;
 font-family: $font-family-serif;
 color: white;
+}
+
+.intro h1 {
+  color: white;
+}
+
+.intro p {
+  color: white;
+  line-height: -10px;
+  text-align: center;
+}
+
+.intro .button {
+
+}
+
+.intro {
+  background-image: url(http://fc01.deviantart.net/fs70/f/2012/082/2/f/blurry_texture__dark_by_dragoroth_stock-d4tow88.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .section {
@@ -26,6 +47,9 @@ a {
 .alert-box.round {
   text-align: center;
   border-radius: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
 }
 
 .bookmark {
