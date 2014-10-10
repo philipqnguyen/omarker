@@ -8,7 +8,7 @@ wikipedia:
   id: 1
   name: Wikipedia
   website: http://wikipedia.org
-  info: 'The free encyclopedia'
+  info: Wikipedia
 
 dog:
   id: 2

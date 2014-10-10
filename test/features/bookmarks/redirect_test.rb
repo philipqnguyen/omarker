@@ -11,7 +11,7 @@ describe 'Clicking on a bookmark should redirect user to proper web page' do
     first(:link, 'Private').click
     page.first('.block-link').click
 
-    page.text.must_include 'Find Wikipedia in a language'
+    page.text.must_include 'in a language'
   end
 
   after do
