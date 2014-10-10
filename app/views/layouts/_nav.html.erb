@@ -30,7 +30,7 @@
           <% if request.path == my_links_path %>
             <%= form_tag(my_links_path, :method => "get", id: "search-form") do %>
               <div id="search_area" class="large-6 small-8 columns">
-                <input id="search" name="search" placeholder="Search Bookmarks" type="text">
+                <input id="search" name="search" placeholder="Search Bookmarks" type="text" autofocus>
               </div>
               <div class="large-3 small-2 columns">
                 <%= submit_tag "Search", :name => nil, class: "alert button expand" %>
@@ -44,7 +44,7 @@
           <% else %>
             <%= form_tag(bookmarks_path, :method => "get", id: "search-form") do %>
               <div id="search_area" class="large-6 small-8 columns">
-                <input id="search" name="search" placeholder="Search Bookmarks" type="text">
+                <input id="search" name="search" placeholder="Search Bookmarks" type="text" autofocus>
               </div>
               <div class="large-3 small-2 columns">
                 <%= submit_tag "Search", :name => nil, class: "alert button expand" %>

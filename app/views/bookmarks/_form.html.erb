@@ -2,16 +2,17 @@
   <% if @bookmark.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
-
       <ul>
-      <% @bookmark.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @bookmark.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
+
   <%= f.label :website %>
   <%= f.text_field :website %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
