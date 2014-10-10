@@ -32,8 +32,6 @@ class Bookmark < ActiveRecord::Base
       self.name = @scrape.title
       self.website = @scrape.url
       self.info = @scrape.description
-      @info = Nokogiri::HTML(open(@scrape.url))
-      self.info = @info.css("body div").text
 
       if @scrape.meta["keywords"]
         self.info += @scrape.description
