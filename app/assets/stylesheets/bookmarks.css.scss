@@ -4,24 +4,35 @@
 
 @import 'foundation';
 
+body {
+  background: #1e5799; /* Old browsers */
+  background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 50%, #7db9e8 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+* {
+  font-family: $font-family-serif;
+}
+
 h1, h2 {
-text-align: center;
-font-family: $font-family-serif;
-color: white;
-}
-
-.intro h1 {
-  color: white;
-}
-
-.intro p {
-  color: white;
-  line-height: -10px;
   text-align: center;
+  font-family: $font-family-serif;
+  color: white;
 }
 
-.intro .button {
-
+a {
+  font-family: $font-family-serif;
+  color: $primary-color;
 }
 
 .intro {
@@ -29,15 +40,23 @@ color: white;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  h1 {
+    color: white;
+  }
+  p {
+    color: white;
+    line-height: -10px;
+    text-align: center;
+  }
 }
 
 .section {
   padding-top: 40px;
 }
 
-a {
-  font-family: $font-family-serif;
-}
+
+
 .info {
   text-align: right;
   margin-right: 8px;
@@ -53,8 +72,9 @@ a {
 }
 
 .bookmark {
-    transition: background-color .3s;
+  transition: background-color .3s;
 }
+
 .bookmark:hover {
   background-color: #ccccff;
 }
@@ -62,8 +82,6 @@ a {
 @media all and (min-width: 1101px) {
 
   .bookmark {
-    box-shadow: 1px 1px 3px #888888;
-    background-color: $smoke;
     width: 20%;
   }
 
@@ -76,8 +94,6 @@ a {
 @media all and (max-width: 1100px) and (min-width: 851px) {
 
   .bookmark {
-    box-shadow: 1px 1px 3px #888888;
-    background-color: $smoke;
     width: 25%;
   }
 
@@ -89,8 +105,6 @@ a {
 @media all and (max-width: 850px) and (min-width: 701px) {
 
   .bookmark {
-    box-shadow: 1px 1px 3px #888888;
-    background-color: $smoke;
     width: 33.3%;
   }
 
@@ -101,76 +115,45 @@ a {
 
 @media all and (min-width: 701px) {
   .picture {
-  height: 230px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
+    height: 230px;
+  }
 
-.masonry .item, .masonry .grid-sizer {
-  height: 280px;
-  float: left;
-}
+  .masonry .item, .masonry .grid-sizer {
+    height: 280px;
+    float: left;
+  }
 
-p.website_title {
-  margin-top: 4px;
-  margin-bottom: -3px;
-  font-size: 100%;
-  text-align: center;
-  line-height: -10px;
-}
-
+  p.website_title {
+    margin-top: 4px;
+    margin-bottom: -3px;
+    line-height: -10px;
+  }
 }
 
 @media all and (max-width: 700px) {
 
   .bookmark {
-    box-shadow: 1px 1px 3px #888888;
-    background-color: $smoke;
     width: 50%;
   }
 
   .masonry .item, .masonry .grid-sizer{
     width:  50%;
+    height: 150px;
+    float: left;
   }
 
   .picture {
-  height: 120px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+    height: 120px;
+  }
+
+  p.website_title {
+    margin-top: 2px;
+    margin-bottom: -25px;
+    line-height: -40px;
+  }
 }
 
-.masonry .item, .masonry .grid-sizer {
-  height: 150px;
-  float: left;
-}
-
-p.website_title {
-  margin-top: 2px;
-  margin-bottom: -25px;
-  font-size: 100%;
-  text-align: center;
-  line-height: -40px;
-}
-
-}
-
-
-
-
-
-* {
-  font-family: $font-family-serif;
-}
-
-body {
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-.link-spanner{
+.link-spanner {
   position:absolute;
   width:100%;
   height:100%;
@@ -181,8 +164,18 @@ body {
 
 .picture {
   position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-a {
-  color: $primary-color;
+p.website_title {
+  font-size: 100%;
+  text-align: center;
 }
+
+.bookmark {
+  box-shadow: 1px 1px 3px #888888;
+  background-color: $smoke;
+}
+

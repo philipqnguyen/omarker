@@ -1,15 +1,14 @@
 class Bookmark < ActiveRecord::Base
-
   validates :website, presence: true
 
   has_many :ownerships
   has_many :users, through: :ownerships
   include PgSearch
   pg_search_scope :super_search,
-                  :against => [:name, :info],
+                  against: [:name, :info],
                   using: {
-                    tsearch:    {dictionary: 'english'},
-                    trigram:    {threshold:  0.1},
+                    tsearch:    { dictionary: 'english' },
+                    trigram:    { threshold:  0.1 },
                     dmetaphone: {}
                   }
 
@@ -21,29 +20,31 @@ class Bookmark < ActiveRecord::Base
     end
   end
 
-  def add_info(url, user)
-        begin
-    @scrape = MetaInspector.new(url)
+  def scrape_url(url, user)
+    begin
+      scraped_url = MetaInspector.new(url)
     rescue Faraday::ConnectionFailed, Addressable::URI::InvalidURIError
-      @scrape = nil
+      scraped_url = nil
     end
 
-    unless @scrape.nil?
-      self.name = @scrape.title
-      self.website = @scrape.url
-      self.info = @scrape.description
+    add_info(scraped_url, user)
+  end
 
-      if @scrape.meta["keywords"]
-        self.info += @scrape.description
-      end
-      if @scrape.image
-        self.picture = @scrape.image
-      elsif @scrape.images.any?
-        self.picture = @scrape.images[Random.new.rand(@scrape.images.length)]
-      elsif @scrape.favicon
-        self.picture = @scrape.favicon
-      end
-      user.bookmarks << self
+  def add_info(scrape, user)
+    return false if scrape.nil?
+    self.name = scrape.title
+    self.website = scrape.url
+    self.info = scrape.description
+
+    self.info += scrape.meta['keywords'] if scrape.meta["keywords"]
+
+    if scrape.image
+      self.picture = scrape.image
+    elsif scrape.images.any?
+      self.picture = scrape.images[Random.new.rand(scrape.images.length)]
+    elsif scrape.favicon
+      self.picture = scrape.favicon
     end
+    user.bookmarks << self
   end
 end

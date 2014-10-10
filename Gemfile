@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'metainspector'
 gem 'masonry-rails'
 gem 'will_paginate'
-
+gem 'rubocop'
 
 group :development do
   gem 'spring'

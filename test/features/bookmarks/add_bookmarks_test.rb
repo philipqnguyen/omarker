@@ -10,8 +10,6 @@
 #     find('#add_website').fill_in(with: 'http://en.wikipedia.org/wiki/Gerbil')
 #     find('#add_website').native.send_keys(:return)
 
-
-
 #     page.text.must_include "the free encyclopedia"
 #   end
 #   after do
