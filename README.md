@@ -23,6 +23,10 @@ Omarker uses a modern metro style with pictures taken from scraped websites laid
 
 ![Screenshot](http://i.imgur.com/yAUEAqt.png "Screenshot of Omarker")
 
+And here is the mobile view:
+
+![Mobile view](http://i.imgur.com/L5GlPv9.jpg "Mobile view of Omarker")
+
 ## Core dependencies
 
 - [MetaInspector](https://github.com/jaimeiniesta/metainspector): Web scraping
