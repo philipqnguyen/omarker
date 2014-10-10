@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :bookmarks, except: [:new, :show, :edit, :update]
+  resources :bookmarks, except: [:show, :edit, :update]
 
   authenticated :user do
     # Rails 4 users must specify the 'as' option to give it a unique name

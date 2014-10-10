@@ -9,3 +9,11 @@ LineLength:
 
 MethodLength:
   Max: 25
+
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - db/**/*
+    - vendor/**/*
+    - bin/*
+    - Guardfile
