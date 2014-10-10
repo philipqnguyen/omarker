@@ -1,20 +1,22 @@
-require "test_helper"
+# require "test_helper"
 
-describe 'Clicking on a bookmark should redirect user to proper web page' do
-  before do
-    Capybara.current_driver = :poltergeist
-  end
+# NOTE: This test takes forever to run and is unreliable.
 
-  it 'should allow users to be redirected to the target page' do
-    sign_in
+# describe 'Clicking on a bookmark should redirect user to proper web page' do
+#   before do
+#     Capybara.current_driver = :poltergeist
+#   end
 
-    first(:link, 'Private').click
-    page.first('.block-link').click
+#   it 'should allow users to be redirected to the target page' do
+#     sign_in
 
-    page.text.must_include 'in a language'
-  end
+#     first(:link, 'Private').click
+#     page.first('.block-link').click
 
-  after do
-    Capybara.use_default_driver
-  end
-end
+#     page.text.must_include 'in a language'
+#   end
+
+#   after do
+#     Capybara.use_default_driver
+#   end
+# end
