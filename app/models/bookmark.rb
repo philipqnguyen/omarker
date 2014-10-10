@@ -48,3 +48,4 @@ class Bookmark < ActiveRecord::Base
     user.bookmarks << self
   end
 end
+
