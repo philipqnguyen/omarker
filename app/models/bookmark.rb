@@ -23,7 +23,7 @@ class Bookmark < ActiveRecord::Base
   def scrape_url(url, user)
     begin
       scraped_url = MetaInspector.new(url)
-    rescue Faraday::ConnectionFailed, Addressable::URI::InvalidURIError
+    rescue Faraday::ConnectionFailed, Addressable::URI::InvalidURIError, URI::InvalidURIError
       scraped_url = nil
     end
 
