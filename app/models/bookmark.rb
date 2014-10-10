@@ -22,12 +22,24 @@ class Bookmark < ActiveRecord::Base
 
   def scrape_url(url, user)
     begin
-      scraped_url = MetaInspector.new(url)
+      scraped_url = MetaInspector.new(url, :html_content_only => true)
     rescue Faraday::ConnectionFailed, Addressable::URI::InvalidURIError, URI::InvalidURIError
       scraped_url = nil
     end
 
-    add_info(scraped_url, user)
+    if scraped_url.content_type == "text/html"
+      add_info(scraped_url, user)
+    else
+      add_image(scraped_url, user)
+    end
+  end
+
+  def add_image(scrape, user)
+    self.name = scrape.url
+    self.website = scrape.url
+    self.picture = scrape.url
+    self.info = scrape.url
+    user.bookmarks << self
   end
 
   def add_info(scrape, user)
