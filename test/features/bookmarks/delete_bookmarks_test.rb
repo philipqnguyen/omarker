@@ -1,12 +1,12 @@
-# require 'test_helper'
+require 'test_helper'
 
-# describe 'Deleting bookmarks from private page' do
-#   it 'should let users delete their bookmarks' do
-#     sign_in
-#     previous_link_count = page.all
+describe 'Deleting bookmarks from public page' do
+  it 'should not let users delete bookmarks from public view' do
+    sign_in
 
-#     page.all('x')[0].click
+    first(:link, 'Private').click
+    previous_link_count = page.all(:link, 'x').count
 
-#     page.all('.block_link').count.must_equal
-#   end
-# end
+    page.all(:link, 'x').count.must_equal 0
+  end
+end
