@@ -27,19 +27,20 @@ class Bookmark < ActiveRecord::Base
       scraped_url = nil
     end
 
-    if scraped_url.content_type == "text/html"
-      add_info(scraped_url, user)
-    else
-      add_image(scraped_url, user)
-    end
+    add_image(scraped_url, user)
   end
 
   def add_image(scrape, user)
-    self.name = scrape.url
-    self.website = scrape.url
-    self.picture = scrape.url
-    self.info = scrape.url
-    user.bookmarks << self
+    return false if scrape.nil?
+    if scrape.content_type == "text/html"
+      add_info(scrape, user)
+    else
+      self.name = scrape.url
+      self.website = scrape.url
+      self.picture = scrape.url
+      self.info = scrape.url
+      user.bookmarks << self
+    end
   end
 
   def add_info(scrape, user)
