@@ -108,11 +108,16 @@ a {
 }
 
 .bookmark {
-  transition: background-color .3s;
+  opacity: 0.8;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -ms-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .bookmark:hover {
-  background-color: #ccccff;
+  opacity: 1;
 }
 
 @media all and (min-width: 1101px) {
