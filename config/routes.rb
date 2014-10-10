@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   root 'bookmarks#index'
+  get 'about' => 'statics#about'
   get 'my_links' => 'bookmarks#my_links'
   get 'api_public_index' => 'bookmarks#api_public_index'
   get 'api_private_index' => 'bookmarks#api_private_index'
