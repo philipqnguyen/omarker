@@ -1,61 +1,52 @@
-<% if current_user %>
-<div class="row">
-  <div class="small-4 small-offset-4 columns">
-    <%= form_for(@bookmark) do |f| %>
-      <% if @bookmark.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
-
-          <ul>
-          <% @bookmark.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
+<% if user_signed_in? %>
+<!-- Search Form -->
+  <div class="row">
+    <div class="small-4 small-offset-4 columns">
+      <%= form_for(@bookmark) do |f| %>
+        <% if @bookmark.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+            <ul>
+            <% @bookmark.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= f.text_field :website, placeholder: "Enter Website", class: "small-3 columns" %>
+        <div class="actions">
         </div>
       <% end %>
-      <%= f.text_field :website, placeholder: "Enter Website", class: "small-3 columns" %>
-      <div class="actions">
+    </div>
+  </div>
+<!-- End Search Form -->
+<% else %>
+<!-- Welcome Hero -->
+  <div class="row section">
+    <div class="medium-8 medium-offset-2 columns panel radius intro">
+      <div class="medium-10 medium-offset-1 columns">
+        <h1>Link.ly</h1>
+        </div>
+        <div class="medium-10 medium-centered columns">
+        <p>A simple web app that saved all your favorite web sites for easy access</p>
+        <p>Simply enter a url to load a bookmark to your dash</p>
+        <p>Web Browser Agnostic: Allows you to save your bookmarks and use them on any browser</p>
+        <p>Mobile Friendly: Bring your bookmarks on the go! Bookmarks are touch-friendly when viewed on a mobile device</p>
+        </div>
+        <div class="small-6 columns">
+          <%= link_to "Sign Up Now", new_user_registration_path, class: "button radius" %>
+        </div>
+        <div class="small-6 columns">
+          <%= link_to 'Sign in', new_user_session_path, class: "button radius" %>
+        </div>
       </div>
-    <% end %>
-  </div>
-</div>
-
-<div class="drawer">
-  <div class="masonry js-masonry"  data-masonry-options='{ "columnWidth": ".grid-sizer", "itemSelector": ".item" }'>
-    <div class="grid-sizer"></div>
-    <div id="content-bookmarks">
-
-      <%= render @bookmarks %>
-
     </div>
   </div>
-</div>
-
+<!-- End Welcome Hero -->
 <% end %>
-
-
-<div class="row section">
-<div class="medium-8 medium-offset-2 columns panel radius intro">
-<div class="medium-10 medium-offset-1 columns">
-<h1>Link.ly</h1>
-</div>
-<div class="medium-10 medium-centered columns">
-<p>A simple web app that saved all your favorite web sites for easy access</p>
-<p>Simply enter a url to load a bookmark to your dash</p>
-<p>Web Browser Agnostic: Allows you to save your bookmarks and use them on any browser</p>
-<p>Mobile Friendly: Bring your bookmarks on the go! Bookmarks are touch-friendly when viewed on a mobile device</p>
-</div>
-<div class="small-6 columns">
-  <%= link_to "Sign Up Now", new_user_registration_path, class: "button radius" %>
-</div>
-<div class="small-6 columns">
-  <%= link_to 'Sign in', new_user_session_path, class: "button radius" %>
-</div>
-</div>
-</div>
-</div>
-
+<!-- Render Bookmarks -->
 <h2>Public Bookmarks</h2>
+
 <div class="drawer">
   <div class="masonry js-masonry"  data-masonry-options='{ "columnWidth": ".grid-sizer", "itemSelector": ".item" }'>
     <div class="grid-sizer"></div>
@@ -66,4 +57,6 @@
     </div>
   </div>
 </div>
+<!-- End Render Bookmarks -->
+
 <%= will_paginate @bookmarks %>
