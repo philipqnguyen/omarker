@@ -3,7 +3,7 @@ require 'test_helper'
 describe 'Authentication page' do
   it 'should allow visitors to sign up' do
     visit root_path
-    click_on 'Sign in'
+    first(:link, 'Sign in').click
     click_on 'Sign up'
 
     fill_in 'Email', with: 'marty@mart.com'
@@ -15,9 +15,10 @@ describe 'Authentication page' do
     page.text.must_include 'Account'
     page.text.wont_include 'Sign in'
   end
+
   it 'should allow visitors to sign in as a user' do
     visit root_path
-    click_on 'Sign in'
+    first(:link, 'Sign in').click
 
     fill_in 'Email', with: users(:user_1).email
     fill_in 'Password', with: 'password'
@@ -27,11 +28,13 @@ describe 'Authentication page' do
     page.text.must_include 'Account'
     page.text.wont_include 'Sign in'
   end
+
   it 'should allow users to sign out' do
     sign_in
 
     click_on 'Sign out'
 
     page.text.must_include 'Signed out successfully'
+    current_path.must_equal '/'
   end
 end

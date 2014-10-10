@@ -2,7 +2,7 @@
 
 # class BookmarksControllerTest < ActionController::TestCase
 #   setup do
-#     @bookmark = bookmarks(:one)
+#     @bookmark = bookmarks(:google)
 #   end
 
 #   test "should get index" do

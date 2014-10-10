@@ -1,4 +1,3 @@
-<div class="fixed">
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
@@ -31,7 +30,8 @@
           <% if request.path == my_links_path %>
             <%= form_tag(my_links_path, :method => "get", id: "search-form") do %>
               <div id="search_area" class="large-6 small-6 columns">
-                <input id="search" name="search" placeholder="Search Bookmarks" type="text">
+                <input id="search" name="search" placeholder="Search Bookmarks" type="text" autofocus>
+
               </div>
               <div class="large-3 small-3 columns">
                 <%= submit_tag "Search", :name => nil, class: "button expand" %>
@@ -44,13 +44,13 @@
             <% end %>
           <% else %>
             <%= form_tag(bookmarks_path, :method => "get", id: "search-form") do %>
-              <div id="search_area" class="large-6 small-8 columns">
-                <input id="search" name="search" placeholder="Search Bookmarks" type="text">
+              <div id="search_area" class="large-6 small-6 columns">
+                <input id="search" name="search" placeholder="Search Bookmarks" type="text" autofocus>
               </div>
-              <div class="large-3 small-2 columns">
+              <div class="large-3 small-3 columns">
                 <%= submit_tag "Search", :name => nil, class: "button expand" %>
               </div>
-              <div class="large-3 small-2 columns">
+              <div class="large-3 small-3 columns">
                 <% if user_signed_in? %>
                   <%= link_to "Public", my_links_path, class: "button expand", id: "private-button" %>
                 <% end %>
@@ -62,4 +62,3 @@
     </ul>
   </section>
 </nav>
-</div>
