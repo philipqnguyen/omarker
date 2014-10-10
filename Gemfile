@@ -9,17 +9,18 @@ gem 'foundation-rails', github: 'philipqnguyen/foundation-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
+gem 'masonry-rails'
+gem 'metainspector'
 gem 'pg'
 gem 'pg_search'
 gem 'rails', '4.1.6'
+gem 'rubocop'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
-gem 'metainspector'
-gem 'masonry-rails'
 gem 'will_paginate'
-gem 'rubocop'
+
 
 group :development do
   gem 'spring'
@@ -28,8 +29,8 @@ end
 group :test do
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
-  gem 'poltergeist'
   gem 'launchy'
+  gem 'poltergeist'
 end
 
 group :production do
