@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :bookmarks
+  resources :bookmarks, except: [:new, :show, :edit, :update]
 
   authenticated :user do
     # Rails 4 users must specify the 'as' option to give it a unique name
-    root :to => 'bookmarks#my_links', :as => "my_links"
+    root to: 'bookmarks#my_links', as: 'my_links'
   end
 
   root 'bookmarks#index'
   get 'my_links' => 'bookmarks#my_links'
   get 'api_public_index' => 'bookmarks#api_public_index'
   get 'api_private_index' => 'bookmarks#api_private_index'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

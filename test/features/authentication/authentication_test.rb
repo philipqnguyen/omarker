@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 describe 'Authentication page' do
   it 'should allow visitors to sign up' do
