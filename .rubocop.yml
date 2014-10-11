@@ -17,3 +17,4 @@ AllCops:
     - vendor/**/*
     - bin/*
     - Guardfile
+    - config/unicorn.rb
