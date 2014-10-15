@@ -7,6 +7,7 @@ class ContactMailer < ActionMailer::Base
     @name = content[:name]
     @email = content[:email]
 
-    mail(to: 'nguyenp6@gmail.com', subject: 'Contact from Omarker user')
+    mail(to: Rails.application.secrets.target_email,
+         subject: 'Contact from Omarker user')
   end
 end
