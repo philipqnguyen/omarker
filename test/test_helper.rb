@@ -5,9 +5,14 @@ require 'minitest/rails'
 require 'minitest/rails/capybara'
 require 'minitest/pride'
 require 'capybara/poltergeist'
+require 'minitest-matchers'
+require 'email_spec'
 
 module ActiveSupport
   class TestCase
+    include EmailSpec::Helpers
+    include EmailSpec::Matchers
+
     fixtures :all
 
     def sign_in(user = :user_1)

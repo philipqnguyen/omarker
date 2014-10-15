@@ -17,6 +17,7 @@ gem 'rails', '4.1.6'
 gem 'rubocop'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sidekiq', '~> 3.2.5'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn', '~> 4.8.3'
@@ -27,6 +28,8 @@ group :development do
 end
 
 group :test do
+  gem 'email_spec'
+  gem 'minitest-matchers'
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
   gem 'launchy'
