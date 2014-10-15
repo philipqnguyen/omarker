@@ -44,12 +44,14 @@
 
       <p>Some future implementations we plan on are the ability to drag bookmarks for organization, including folders. We would be open for other suggestions. If you'd like to get in touch with either of us, you can go to Ron's Github <%= link_to "here", "https://github.com/dada5714" %> and Philip's Github <%= link_to "here", "https://github.com/philipqnguyen" %>.
 
+      <h2>Contact us</h2>
+
       <%= form_tag(contact_email_path, method: "get") do |f| %>
         <div class="large-6 small-6 columns">
-          <input name="name" placeholder="e.g. John Martin" type="text">
+          <input name="name" placeholder="Your name" type="text">
         </div>
         <div class="large-6 small-6 columns">
-          <input name="email" placeholder="e.g. your@email.com" type="text">
+          <input name="email" placeholder="Your email, e.g. your@email.com" type="text">
         </div>
         <div class="large-6 small-6 columns">
           <input name="subject" placeholder="Subject or Title" type="text">
