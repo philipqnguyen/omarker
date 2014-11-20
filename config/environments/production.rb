@@ -82,4 +82,11 @@ Rails.application.configure do
   # Mailer for devise
   config.action_mailer.default_url_options = {
     host: 'omarker.herokuapp.com' }
+
+  # Pokes dyno to keep awake
+  Dynopoker.configure do |config|
+    config.address = 'http://omarker.herokuapp.com'
+    # config.enable = false # default is true
+    # config.poke_frequency = 123 # default is 1800s (30min)
+  end
 end
